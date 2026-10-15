@@ -13,7 +13,6 @@
     const [perfil, setPerfil] = useState({})      //Variavel com controle de estado para o objeto perfil
     const [error, setError] = useState(false)     //Variavel com controle de estado para o erros
     const [loading, setLoading] = useState(true)  //Variavel com controle de estado para o Carregamento
-    const [DBZ, setDBZ] = useState({})            //Variavel com controle de estado para o objeto DBZ
     const [pokemon, setPokemon] = useState({})    //Variavel com controle de estado para o objeto pokemon
     const [filme, setFilme] = useState({})        //Variavel com controle de estado para o objeto filme
     const [text, setText] = useState(() => {
@@ -36,9 +35,6 @@
           const response = await axios.get(       //primeiro consumo da API person mockada, o ID(ultimo numero da URL precisa ser o seu ID)
             "https://6a79e554674f43f4db11ebc8.mockapi.io/api/person/45")
           setPerfil(response.data)                //altera a variavel de estado perfil com o objeto retornado pela API
-          const responseDBZ = await axios.get(    //segundo consumo de API DBZ, o ultimo numero é o ID do persnagem
-            "https://dragonball-api.com/api/characters/11")
-          setDBZ(responseDBZ.data)                //altera a variavel de estado DBZ com o objeto retornado pela API
           const responsePoke = await axios.get(   //terceiro consumo de API Pokemon, o ultimo numero ou palavra é o ID do persnagem
             "https://pokeapi.co/api/v2/pokemon/sylveon")
           setPokemon(responsePoke.data)           //altera a variavel de estado pokemon com o objeto retornado pela API
@@ -79,9 +75,8 @@
         <section id="center">   
           <MovieTe/>
                             {/* mantive o retorno do padrão da pagina gerado pelo vite*/}
-          <div className="hero">                  {/*alterando apenas o conteudo apresentado, mas podemos trabalhar um um layout novo
-                                                      sempre que quisermos, vou abordar isso nas próximas atividades*/}
-            <CharDBZ personagem={DBZ} /> {/* apresenta a imagem da api do DBZ */}
+         <div>
+          <CharDBZ />
           </div>
           <MyName nome={perfil.nome} />
           <div className="card">
