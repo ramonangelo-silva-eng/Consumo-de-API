@@ -1,29 +1,7 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import useFetchCharDBZ from '../hooks/userFetchCharDBZ';
 
 export default function CharDBZ (){
-const [DBZ, setDBZ] = useState({})
-const [error, setError] = useState(false)     
-const [loading, setLoading] = useState(true)
-
-useEffect(() => {
-    const getData = async () => {
-      try {
-        const responseDBZ = await axios.get(
-          'https://dragonball-api.com/api/characters/11'
-        );
-
-        setDBZ(responseDBZ.data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setError(true);
-        console.log('Error: ', error);
-      }
-    };
-
-    getData();
-  }, []);
+const {loading, error, DBZ} = useFetchCharDBZ ()
 
   if (loading) {
     return <div>Carregando personagem...</div>;
@@ -31,7 +9,8 @@ useEffect(() => {
 
   if (error) {
     return <div>Erro ao carregar personagem.</div>;
-  }
+                                                        
+}
 
   return (
     <div className="hero">
